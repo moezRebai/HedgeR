@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HedgeR.Aggregator", "src\HedgeR.Aggregator\HedgeR.Aggregator.csproj", "{675AC906-DB50-4A77-9992-F8F9165B85FE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HedgeR.Shared", "src\HedgeR.Shared\HedgeR.Shared.csproj", "{964297EC-4009-4071-977F-47754914CC59}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{83328448-310B-4715-901A-8304D66F50BD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Feeds", "Feeds", "{E5414211-121A-4280-9750-ACE0C9747CE4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HedgeR.Spread", "src\HedgeR.Feeds\Spread\HedgeR.Spread.csproj", "{960327E6-709A-45D0-98D4-435DFCB5FB99}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HedgeR.Spot", "src\HedgeR.Feeds\Spot\HedgeR.Spot.csproj", "{1D1372DC-18FA-4D53-ABC9-42C0228DEE96}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HedgeR.Fees", "src\HedgeR.Feeds\Fees\HedgeR.Fees.csproj", "{93166D09-1661-458C-85DB-6CE4B6EF65B3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{675AC906-DB50-4A77-9992-F8F9165B85FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{675AC906-DB50-4A77-9992-F8F9165B85FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{675AC906-DB50-4A77-9992-F8F9165B85FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{675AC906-DB50-4A77-9992-F8F9165B85FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{964297EC-4009-4071-977F-47754914CC59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{964297EC-4009-4071-977F-47754914CC59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{964297EC-4009-4071-977F-47754914CC59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{964297EC-4009-4071-977F-47754914CC59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{960327E6-709A-45D0-98D4-435DFCB5FB99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{960327E6-709A-45D0-98D4-435DFCB5FB99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{960327E6-709A-45D0-98D4-435DFCB5FB99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{960327E6-709A-45D0-98D4-435DFCB5FB99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D1372DC-18FA-4D53-ABC9-42C0228DEE96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D1372DC-18FA-4D53-ABC9-42C0228DEE96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D1372DC-18FA-4D53-ABC9-42C0228DEE96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D1372DC-18FA-4D53-ABC9-42C0228DEE96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93166D09-1661-458C-85DB-6CE4B6EF65B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93166D09-1661-458C-85DB-6CE4B6EF65B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93166D09-1661-458C-85DB-6CE4B6EF65B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93166D09-1661-458C-85DB-6CE4B6EF65B3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{964297EC-4009-4071-977F-47754914CC59} = {83328448-310B-4715-901A-8304D66F50BD}
+		{960327E6-709A-45D0-98D4-435DFCB5FB99} = {E5414211-121A-4280-9750-ACE0C9747CE4}
+		{1D1372DC-18FA-4D53-ABC9-42C0228DEE96} = {E5414211-121A-4280-9750-ACE0C9747CE4}
+		{93166D09-1661-458C-85DB-6CE4B6EF65B3} = {E5414211-121A-4280-9750-ACE0C9747CE4}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2B7C32E4-C469-4CF4-AE66-167037D1A2F7}
+	EndGlobalSection
+EndGlobal
