@@ -1,0 +1,24 @@
+apps:
+  - name: hedger-aggregator
+    script: dotnet
+    args: run
+    cwd: src\HedgeR.Aggregator
+    max_restarts: 3
+
+  - name: hedger-fees
+    script: dotnet
+    args: run
+    cwd: src\HedgeR.Feeds\Fees
+    max_restarts: 3
+
+  - name: hedger-spot
+    script: dotnet
+    args: run
+    cwd: src\HedgeR.Feeds\Spot
+    max_restarts: 3
+
+  - name: hedger-spread
+    script: dotnet
+    args: run
+    cwd: src\HedgeR.Feeds\Spread
+    max_restarts: 3
