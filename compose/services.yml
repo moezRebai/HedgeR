@@ -1,0 +1,51 @@
+version: '3'
+services:
+
+  aggregator:
+    build:
+      context: ../
+      dockerfile: src/HedgeR.Aggregator/Dockerfile
+    container_name: hedger-aggregator
+    restart: unless-stopped
+    ports:
+      - 5010:80
+    networks:
+      - hedger
+
+  hedger-spot:
+    build:
+      context: ../
+      dockerfile:  src/HedgeR.Feeds/Spot/Dockerfile
+    container_name: hedger-spot
+    restart: unless-stopped
+    ports:
+      - 5020:80
+    networks:
+      - hedger
+
+  hedger-fees:
+    build:
+      context: ../
+      dockerfile: src/HedgeR.Feeds/Fees/Dockerfile
+    container_name: hedger-fees
+    restart: unless-stopped
+    ports:
+      - 5030:80
+    networks:
+      - hedger
+
+  hedger-spread:
+    build:
+      context: ../
+      dockerfile: src/HedgeR.Feeds/Spread/Dockerfile
+    container_name: hedger-spread
+    restart: unless-stopped
+    ports:
+      - 5040:80
+    networks:
+      - hedger
+
+networks:
+  hedger:
+    name: hedger
+    #external: true
