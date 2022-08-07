@@ -1,4 +1,6 @@
 ﻿
+using System.Threading.Channels;
+
 internal class CurrencyPairSpotProviderService : BackgroundService
 {
     private readonly ICurrencyPairSpotGenerator _currencyPairSpotGenerator;
@@ -11,12 +13,23 @@ internal class CurrencyPairSpotProviderService : BackgroundService
         _logger = logger;
     }
 
-    protected override Task ExecuteAsync(CancellationToken stoppingToken)
+    public async Task StartAsync(CancellationToken cancellationToken)
     {
-        _currencyPairSpotGenerator.Start();
+        _ = _currencyPairSpotGenerator.Start();
+    }
 
-        _logger.LogInformation("CurrencyPair spot provider started !");
+    public async Task StopAsync(CancellationToken cancellationToken)
+    {
+        await _currencyPairSpotGenerator.Stop();
+    }
 
-        return Task.CompletedTask;
+    protected async override Task ExecuteAsync(CancellationToken stoppingToken)
+    {
+        if (stoppingToken.IsCancellationRequested)
+        {
+            await StopAsync(stoppingToken);
+        }
+
+       await StartAsync(stoppingToken);
     }
 }
