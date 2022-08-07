@@ -23,7 +23,7 @@ internal class CurrencyPairSpotProviderService : BackgroundService
         {
             var _ = request switch
             {
-                RequestStartSpotFeeder => StartSpotFeeder(),
+                RequestStartSpotFeeder => StartSpotFeeder(request.Frequency),
                 RequestStopSpotFeeder => StopSpotFeeder(),
                 _ => Task.CompletedTask,
             };
@@ -43,7 +43,7 @@ internal class CurrencyPairSpotProviderService : BackgroundService
         return _currencyPairSpotGenerator.StopAsync();
     }
 
-    private Task StartSpotFeeder()
+    private Task StartSpotFeeder(int frequency)
     {
         _logger.LogInformation("Request start Spot Feeder  !");
 
@@ -53,6 +53,6 @@ internal class CurrencyPairSpotProviderService : BackgroundService
             return Task.CompletedTask;
         }
 
-        return _currencyPairSpotGenerator.StartAsync();
+        return _currencyPairSpotGenerator.StartAsync(frequency);
     }
 }

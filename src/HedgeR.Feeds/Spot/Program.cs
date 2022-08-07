@@ -14,9 +14,9 @@ app.UseCustomSwagger();
 app.MapGet("/", () => "Hello HedgeR Spot !")
 .WithName("GreetingSpotFeeder").WithTags("Getters"); ;
 
-app.MapPost("/spot/start", async (SpotRequestChannel channel) =>
+app.MapPost("/spot/start/{frequency}", async (int frequency, SpotRequestChannel channel) =>
 {
-    await channel.Requests.Writer.WriteAsync(new RequestStartSpotFeeder());
+    await channel.Requests.Writer.WriteAsync(new RequestStartSpotFeeder() { Frequency = frequency});
     return Results.Ok();
 
 }).Produces(StatusCodes.Status200OK)

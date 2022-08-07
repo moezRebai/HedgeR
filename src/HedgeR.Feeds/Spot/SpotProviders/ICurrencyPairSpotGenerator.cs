@@ -1,7 +1,7 @@
 ﻿
 internal interface ICurrencyPairSpotGenerator
 {
-    Task StartAsync();
+    Task StartAsync(int frequency);
 
     Task StopAsync();
 }
