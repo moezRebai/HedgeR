@@ -4,7 +4,7 @@ internal class CurrencyPairSpotGenerator : ICurrencyPairSpotGenerator
     private readonly ILogger<CurrencyPairSpotGenerator> _logger;
     private readonly IDictionary<string, decimal> _currencyPairs;
     private bool _isStopped;
-    private double UpdateSpotFrerquencyInSeconds = 2;
+    private double _updateSpotFrerquencyInSeconds = 1;
     private readonly Random _random = new();
 
     public CurrencyPairSpotGenerator(ILogger<CurrencyPairSpotGenerator> logger)
@@ -22,9 +22,14 @@ internal class CurrencyPairSpotGenerator : ICurrencyPairSpotGenerator
         };
     }
 
-    public async Task StartAsync()
+    public async Task StartAsync(int frequency)
     {
         _isStopped = false;
+
+        _updateSpotFrerquencyInSeconds = frequency > 0 ? frequency : _updateSpotFrerquencyInSeconds;
+
+        _logger.LogInformation($"Start Spot Feeder with update frequency : {_updateSpotFrerquencyInSeconds}");
+
 
         while (!_isStopped)
         {
@@ -45,7 +50,7 @@ internal class CurrencyPairSpotGenerator : ICurrencyPairSpotGenerator
 
                 var currencyPairSpot = new CurrencyPairSpot(symbol, latestSpotValue, timestamp);
 
-                await Task.Delay(TimeSpan.FromSeconds(UpdateSpotFrerquencyInSeconds));
+                await Task.Delay(TimeSpan.FromSeconds(_updateSpotFrerquencyInSeconds));
             }
         }
     }
