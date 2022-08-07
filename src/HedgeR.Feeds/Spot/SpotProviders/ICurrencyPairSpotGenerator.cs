@@ -1,7 +1,7 @@
 ﻿
 internal interface ICurrencyPairSpotGenerator
 {
-    Task Start();
+    Task StartAsync();
 
-    Task Stop();
+    Task StopAsync();
 }

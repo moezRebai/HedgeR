@@ -22,8 +22,10 @@ internal class CurrencyPairSpotGenerator : ICurrencyPairSpotGenerator
         };
     }
 
-    public async Task Start()
+    public async Task StartAsync()
     {
+        _isStopped = false;
+
         while (!_isStopped)
         {
             foreach (var (symbol, value) in _currencyPairs)
@@ -48,7 +50,7 @@ internal class CurrencyPairSpotGenerator : ICurrencyPairSpotGenerator
         }
     }
 
-    public Task Stop()
+    public Task StopAsync()
     {
         _isStopped = true;
         return Task.CompletedTask;
