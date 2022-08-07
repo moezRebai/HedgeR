@@ -7,4 +7,8 @@ var app = builder.Build();
 
 app.MapGet("/", () => "HedgeR Spot !");
 
+app.MapPost("/start", () => { });
+
+app.MapPost("/stop", () => { });
+
 app.Run();
