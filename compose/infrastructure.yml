@@ -1,0 +1,20 @@
+version: '3'
+services:
+  redis:
+    image: redis
+    container_name : redis
+    restart: unless-stopped
+    ports:
+      - 6379:6379
+    networks:
+      - hedger
+    volumes:
+      - redis:/data
+      
+networks:
+  hedger:
+    name: hedger
+    
+volumes:
+    redis:
+        driver: local

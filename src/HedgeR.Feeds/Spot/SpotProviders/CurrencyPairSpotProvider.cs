@@ -22,7 +22,7 @@ internal class CurrencyPairSpotProvider : ICurrencyPairSpotProvider
         };
     }
 
-    public async Task StartAsync(int frequency)
+    public async IAsyncEnumerable<CurrencyPairSpot> StartStreamingAsync(int frequency)
     {
         _isStopped = false;
 
@@ -37,7 +37,7 @@ internal class CurrencyPairSpotProvider : ICurrencyPairSpotProvider
             {
                 if (_isStopped)
                 {
-                    return;
+                    yield break;
                 }
 
                 var latestSpotValue = GetNextSpotValue(value);
@@ -49,6 +49,8 @@ internal class CurrencyPairSpotProvider : ICurrencyPairSpotProvider
                 _logger.LogInformation($"CurrencyPair {symbol} has a new spot value : {latestSpotValue:F} at {timestamp}");
 
                 var currencyPairSpot = new CurrencyPairSpot(symbol, latestSpotValue, timestamp);
+
+                yield return currencyPairSpot;
 
                 await Task.Delay(TimeSpan.FromSeconds(_updateSpotFrerquencyInSeconds));
             }

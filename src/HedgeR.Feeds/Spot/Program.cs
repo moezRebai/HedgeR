@@ -1,4 +1,4 @@
-using HedgeR.Shared;
+using HedgeR.Shared.Swagger;
 using HedgeR.Spot.Requests;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +7,7 @@ builder.Services.AddSingleton<SpotRequestChannel>();
 builder.Services.AddHostedService<CurrencyPairSpotProviderService>();
 builder.Services.AddSingleton<ICurrencyPairSpotProvider, CurrencyPairSpotProvider>();
 builder.Services.AddSwagger();
+builder.Services.AddRedis(builder.Configuration);
 
 var app = builder.Build();
 app.UseCustomSwagger();

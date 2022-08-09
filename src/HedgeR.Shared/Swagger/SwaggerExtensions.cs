@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace HedgeR.Shared
+namespace HedgeR.Shared.Swagger
 {
     public static class SwaggerExtensions
     {
