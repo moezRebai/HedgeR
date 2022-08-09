@@ -1,7 +1,7 @@
 ﻿
 internal interface ICurrencyPairSpotProvider
 {
-    Task StartAsync(int frequency);
+    IAsyncEnumerable<CurrencyPairSpot> StartStreamingAsync(int frequency);
 
     Task StopAsync();
 }

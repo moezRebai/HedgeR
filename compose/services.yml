@@ -61,4 +61,4 @@ services:
 networks:
   hedger:
     name: hedger
-    #external: true
+    external: true
