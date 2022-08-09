@@ -1,13 +1,13 @@
 ﻿
-internal class CurrencyPairSpotGenerator : ICurrencyPairSpotGenerator
+internal class CurrencyPairSpotProvider : ICurrencyPairSpotProvider
 {
-    private readonly ILogger<CurrencyPairSpotGenerator> _logger;
+    private readonly ILogger<CurrencyPairSpotProvider> _logger;
     private readonly IDictionary<string, decimal> _currencyPairs;
     private bool _isStopped;
     private double _updateSpotFrerquencyInSeconds = 1;
     private readonly Random _random = new();
 
-    public CurrencyPairSpotGenerator(ILogger<CurrencyPairSpotGenerator> logger)
+    public CurrencyPairSpotProvider(ILogger<CurrencyPairSpotProvider> logger)
     {
         _logger = logger;
 

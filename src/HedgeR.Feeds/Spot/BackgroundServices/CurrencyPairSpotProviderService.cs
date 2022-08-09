@@ -3,13 +3,12 @@ using HedgeR.Spot.Requests;
 
 internal class CurrencyPairSpotProviderService : BackgroundService
 {
-    private readonly ICurrencyPairSpotGenerator _currencyPairSpotGenerator;
+    private readonly ICurrencyPairSpotProvider _currencyPairSpotGenerator;
     private readonly SpotRequestChannel _channel;
     private readonly ILogger<CurrencyPairSpotProviderService> _logger;
-    // 0 : stop; 1 : start
-    private int startFeeder = 0;
+    private int _startFeeder;
 
-    public CurrencyPairSpotProviderService(ICurrencyPairSpotGenerator currencyPairSpotGenerator, SpotRequestChannel channel,
+    public CurrencyPairSpotProviderService(ICurrencyPairSpotProvider currencyPairSpotGenerator, SpotRequestChannel channel,
         ILogger<CurrencyPairSpotProviderService> logger)
     {
         _currencyPairSpotGenerator = currencyPairSpotGenerator;
@@ -32,11 +31,11 @@ internal class CurrencyPairSpotProviderService : BackgroundService
 
     private Task StopSpotFeeder()
     {
-        _logger.LogInformation("Request stop Spot Feeder  !");
+        _logger.LogInformation("Request stop SpotFeeder  !");
 
-        if (Interlocked.Exchange(ref startFeeder, 0) == 0)
+        if (Interlocked.Exchange(ref _startFeeder, 0) == 0)
         {
-            _logger.LogWarning("Spot Feeder already stopped !");
+            _logger.LogWarning("SpotFeeder already stopped !");
             return Task.CompletedTask;
         }
 
@@ -45,11 +44,11 @@ internal class CurrencyPairSpotProviderService : BackgroundService
 
     private Task StartSpotFeeder(int frequency)
     {
-        _logger.LogInformation("Request start Spot Feeder  !");
+        _logger.LogInformation("Request start SpotFeeder  !");
 
-        if (Interlocked.Exchange(ref startFeeder, 1) == 1)
+        if (Interlocked.Exchange(ref _startFeeder, 1) == 1)
         {
-            _logger.LogWarning("Spot Feeder already started !");
+            _logger.LogWarning("SpotFeeder already started !");
             return Task.CompletedTask;
         }
 

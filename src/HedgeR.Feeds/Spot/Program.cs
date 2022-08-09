@@ -5,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSingleton<SpotRequestChannel>();
 builder.Services.AddHostedService<CurrencyPairSpotProviderService>();
-builder.Services.AddSingleton<ICurrencyPairSpotGenerator, CurrencyPairSpotGenerator>();
+builder.Services.AddSingleton<ICurrencyPairSpotProvider, CurrencyPairSpotProvider>();
 builder.Services.AddSwagger();
 
 var app = builder.Build();
