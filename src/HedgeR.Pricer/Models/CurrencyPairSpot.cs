@@ -1,0 +1,1 @@
+﻿internal record CurrencyPairSpot(string CurrencyPair, decimal Value, long Timestamp);

@@ -8,7 +8,6 @@ namespace HedgeR.Shared.Swagger
         public static IServiceCollection AddSwagger(this IServiceCollection services)
         {
             services.AddEndpointsApiExplorer();
-
             services.AddSwaggerGen();
             return services;
         }

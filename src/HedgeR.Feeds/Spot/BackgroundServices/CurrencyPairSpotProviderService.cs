@@ -57,9 +57,7 @@ internal class CurrencyPairSpotProviderService : BackgroundService
 
         await foreach (var currencyPair in _currencyPairSpotGenerator.StartStreamingAsync(frequency))
         {
-            _logger.LogInformation("Publishing the currencyPair spot ....");
-
-            await _streamingPublisher.PublishAsync(currencyPair.CurrencyPair, currencyPair);
+            await _streamingPublisher.PublishAsync("SpotFeed", currencyPair);
         }
     }
 }
