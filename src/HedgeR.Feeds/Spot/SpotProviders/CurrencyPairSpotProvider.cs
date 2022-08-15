@@ -1,25 +1,30 @@
 ﻿
+using HedgeR.Shared.Entities;
+using HedgeR.Spot.Entities;
+
 internal class CurrencyPairSpotProvider : ICurrencyPairSpotProvider
 {
     private readonly ILogger<CurrencyPairSpotProvider> _logger;
+    private readonly IRepository<CurrencyPair> _repository;
     private readonly IDictionary<string, decimal> _currencyPairs;
     private bool _isStopped;
     private double _updateSpotFrerquencyInSeconds = 1;
     private readonly Random _random = new();
 
-    public CurrencyPairSpotProvider(ILogger<CurrencyPairSpotProvider> logger)
+    public CurrencyPairSpotProvider(ILogger<CurrencyPairSpotProvider> logger, IRepository<CurrencyPair> repository)
     {
         _logger = logger;
 
-        //todo : retrieve currencyPairs from mongoDb 
-        _currencyPairs = new Dictionary<string, decimal>
-        {
-            { "USDEUR", 0.9805m },
-            { "USDGBP", 0.8215m },
-            { "USDJPY", 134.52m },
-            { "USDCAD", 1.281m },
-            { "USDCHF", 0.9542m }
-        };
+        _repository = repository;
+
+        _currencyPairs = GetCurencyPairs();
+    }
+
+    private IDictionary<string, decimal> GetCurencyPairs()
+    {
+        var curencyPairs = _repository.GetAllAsync().Result;
+
+        return curencyPairs.ToDictionary(c => c.Name, c => c.DefaultValue ?? 0);
     }
 
     public async IAsyncEnumerable<CurrencyPairSpot> StartStreamingAsync(int frequency)

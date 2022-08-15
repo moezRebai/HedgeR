@@ -1,4 +1,4 @@
-version: '3'
+version: '3.8'
 services:
 
   aggregator:
@@ -22,6 +22,8 @@ services:
       - 5020:80
     networks:
       - hedger
+    environment:
+      MongoDB__Host: mongo
 
   fees:
     container_name: hedger-fees

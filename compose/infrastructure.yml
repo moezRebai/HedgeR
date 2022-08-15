@@ -1,4 +1,4 @@
-version: '3'
+version: '3.8'
 services:
   redis:
     image: redis
@@ -11,6 +11,28 @@ services:
     volumes:
       - redis:/data
       
+  mongo:
+    image: mongo
+    container_name: mongo
+    restart: unless-stopped
+    ports:
+      - 27017:27017
+    networks:
+      - hedger
+    volumes: 
+      - mongodbdata:/data/db
+      
+  mongoexpress:
+        image: mongo-express
+        container_name: mongoexpress
+        restart: unless-stopped
+        ports:
+            - 8081:8081
+        networks:
+            - hedger
+        environment: 
+            - ME_CONFIG_MONGODB_URL=mongodb://mongo:27017
+            - ME_CONFIG_MONGODB_SERVER=mongo
 networks:
   hedger:
     name: hedger
@@ -18,3 +40,4 @@ networks:
 volumes:
     redis:
         driver: local
+    mongodbdata:

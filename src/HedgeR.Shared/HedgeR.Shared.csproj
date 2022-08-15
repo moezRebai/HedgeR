@@ -7,13 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MongoDB.Driver" Version="2.17.1" />
     <PackageReference Include="MongoDB.Driver.Core" Version="2.17.1" />
     <PackageReference Include="StackExchange.Redis" Version="2.6.48" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Mongo\" />
   </ItemGroup>
 
 </Project>

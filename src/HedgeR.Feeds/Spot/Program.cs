@@ -1,19 +1,14 @@
+using HedgeR.Shared.Mongo;
 using HedgeR.Shared.Redis.Streaming;
 using HedgeR.Shared.Serializer;
 using HedgeR.Shared.Streaming;
 using HedgeR.Shared.Swagger;
+using HedgeR.Spot.Entities;
 using HedgeR.Spot.Requests;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddSingleton<SpotRequestChannel>();
-builder.Services.AddHostedService<CurrencyPairSpotProviderService>();
-builder.Services.AddSingleton<ICurrencyPairSpotProvider, CurrencyPairSpotProvider>();
-builder.Services.AddSerializer();
-builder.Services.AddSwagger();
-builder.Services.AddRedis(builder.Configuration);
-builder.Services.AddStreaming();
-builder.Services.AddRedisStreaming();
+AddServices(builder.Services, builder.Configuration);
 
 var app = builder.Build();
 app.UseCustomSwagger();
@@ -39,3 +34,19 @@ app.MapPost("/spot/stop", async (SpotRequestChannel channel) =>
 
 
 app.Run();
+
+void AddServices(IServiceCollection services, IConfiguration configuration)
+{
+   services.AddSingleton<SpotRequestChannel>();
+   services.AddHostedService<CurrencyPairSpotProviderService>();
+   services.AddSingleton<ICurrencyPairSpotProvider, CurrencyPairSpotProvider>();
+   services.AddSerializer();
+   services.AddSwagger();
+
+   services.AddStreaming()
+            .AddRedis(builder.Configuration)
+             .AddRedisStreaming();
+
+    services.AddMongo(builder.Configuration)
+            .AddMongoRepository<CurrencyPair>("CurrrencyPair");
+}
