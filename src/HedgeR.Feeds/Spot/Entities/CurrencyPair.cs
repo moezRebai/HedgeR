@@ -9,5 +9,7 @@ namespace HedgeR.Spot.Entities
         public string Name { get; set; }
 
         public decimal? DefaultValue { get; set; }
+
+        public decimal SpreadBps { get; set; }
     }
 }
