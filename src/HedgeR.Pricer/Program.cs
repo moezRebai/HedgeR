@@ -6,6 +6,7 @@ using HedgeR.Shared.Swagger;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddHostedService<SpotStreamProvider>();
+builder.Services.AddHostedService<SpreadStreamProvider>();
 builder.Services.AddSwagger();
 builder.Services.AddSerializer();
 builder.Services.AddRedis(builder.Configuration);
